@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Task Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let task of getApps()">
+          <th scope="row">{{task.name}}</th>
+          <td>{{task.description}}</td>
+          <td>
+            <button (click)="openApp(task)" routerLink="/dashboard">Open Task</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
