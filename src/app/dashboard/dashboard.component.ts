@@ -5,6 +5,7 @@ import {DashboardService} from '../dashboard.service';
 import {ChartDataSets, ChartOptions, ChartPoint, ChartScales, ChartType} from 'chart.js';
 import {Color, Label, MultiDataSet} from 'ng2-charts';
 import {Metric} from '../models/metric';
+import {MetricGraphVisualizationComponent} from '../metric-graph-visualization/metric-graph-visualization.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,40 +16,8 @@ export class DashboardComponent implements OnInit {
   constructor(@Inject(GLOBAL_SESSION_INFO) private session: SessionInfo, private service: DashboardService) {
   }
 
-  // Metrics Chart Support
-  chartOptions: ChartOptions = {
-    responsive: true,
-    showLines: true,
-    scales: {
-      xAxes: [{
-        type: 'time'
-      }]
-    },
-    legend: {
-      display: false
-    }
-  };
-  selectedMetricType = '';
-  // End Chart Support
+  model = new MetricGraphVisualizationComponent(this.service);
 
   ngOnInit() {
-  }
-
-  getEvaluatedApp(): EvaluatedApplication {
-    return this.session.getActiveApp();
-  }
-
-  // Metrics Chart Support
-  renderChartData(metrics: Metric[], type: string): ChartPoint[] {
-    const byMetricType = {};
-    metrics.forEach(value => {
-        if (!byMetricType.hasOwnProperty(value.name)) {
-          byMetricType[value.name] = [];
-        }
-        const arr = byMetricType[value.name] as Array<{}>;
-        arr.push({t: value.measuredTime, y: value.value});
-      }
-    );
-    return byMetricType[type] as ChartPoint[];
   }
 }

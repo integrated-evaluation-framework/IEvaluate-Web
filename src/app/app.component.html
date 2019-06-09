@@ -29,10 +29,13 @@
             <a class="nav-link" href="#" routerLink="dashboard" *ngIf="hasAppSelected()">Application Monitoring</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" routerLink="apps" *ngIf="hasAppSelected()">Review Errors</a>
+            <a class="nav-link" href="#" routerLink="evaluate" *ngIf="hasAppSelected()">Review Identified Errors</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" routerLink="apps" *ngIf="hasAppSelected()">Live Metrics</a>
+            <a class="nav-link" href="#" routerLink="annotate" *ngIf="hasAppSelected()">Generate New Baselines</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="baseline" *ngIf="hasAppSelected()">Explore Baseline Corpus</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

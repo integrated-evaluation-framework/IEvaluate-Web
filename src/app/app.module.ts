@@ -2,12 +2,18 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ApplicationListComponent} from './application/application-list.component';
+import {ApplicationListComponent} from './application-list/application-list.component';
 import {AppRoutingModule} from './app-routing.module';
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {GLOBAL_SESSION_INFO, SessionInfo} from './models/sessioninfo';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ChartsModule} from 'ng2-charts';
+import { MetricGraphVisualizationComponent } from './metric-graph-visualization/metric-graph-visualization.component';
+import {FormsModule} from '@angular/forms';
+import { EvaluateListComponent } from './evaluate-list/evaluate-list.component';
+import { EvaluateDetailModalComponent } from './evaluate-detail-modal/evaluate-detail-modal.component';
+import { AnnotateListComponent } from './annotate-list/annotate-list.component';
+import { BaselineExplorerComponent } from './baseline-explorer/baseline-explorer.component';
 
 
 
@@ -15,13 +21,19 @@ import {ChartsModule} from 'ng2-charts';
   declarations: [
     AppComponent,
     ApplicationListComponent,
-    DashboardComponent
+    DashboardComponent,
+    MetricGraphVisualizationComponent,
+    EvaluateListComponent,
+    EvaluateDetailModalComponent,
+    AnnotateListComponent,
+    BaselineExplorerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StorageServiceModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   providers: [{provide: GLOBAL_SESSION_INFO, useExisting: SessionInfo}, SessionInfo],
   bootstrap: [AppComponent]

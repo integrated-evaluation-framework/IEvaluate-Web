@@ -1,56 +1,127 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col" style="text-align: center">
-      <h1>Application Overview - {{getEvaluatedApp().name}}</h1>
-    </div>
+<div class="row">
+  <div class="col" style="text-align: center">
+    <h1>{{session.getActiveApp().name}}</h1>
   </div>
-  <div class="row"><br/></div>
-  <div class="row">
-    <div class="col">
-      <div class="card" style="width: 18rem;text-align: center">
-        <h5 class="card-header">
-          Newly Reported Errors
-        </h5>
-        <div class="card-body" style="background-color: #ffffff">
-          <h1 class="card-text"
-              [ngStyle]="{'color': service.getNewErrors() > 0 ? '#FF0000' : '#000000'}">{{service.getNewErrors()}}</h1>
-          <button class="btn btn-primary">Explore</button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="width: 18rem;text-align: center">
-        <h5 class="card-header">
-          Regression Errors
-        </h5>
-        <div class="card-body" style="background-color: #ffffff">
-          <h1 class="card-text"
-              [ngStyle]="{'color': service.getNumErrorsAgainstGold() > 0 ? '#FF0000' : '#000000'}">{{service.getNumErrorsAgainstGold()}}</h1>
-          <button class="btn btn-primary">Explore</button>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card" style="text-align: center">
-        <h5 class="card-header">
-          Metrics
-        </h5>
-        <div class="card-body" style="background-color: #ffffff">
-          <form>
-            <div class="form-group">
-              <select class="form-control" (change)="selectedMetricType = $event.target.valueOf().toString()">
-                <option *ngFor="let metric of service.getMetricTypes()" value="{{metric}}">{{metric}}</option>
-              </select>
+</div>
+<div class="row"><br/></div>
+<div class="row">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-6 dashboard-left">
+        <div class="container-fluid" style="text-align: center">
+          <div class="card">
+            <h5 class="card-header">
+              Application Metrics
+            </h5>
+            <div class="card-body">
+              <div class="row" style="padding-bottom: 20px">
+                <div class="col">
+                  <div class="card" style="text-align: center;height: 100%">
+                    <h5 class="card-header">
+                      Newly Reported Errors
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <h1 class="card-text"
+                          [ngStyle]="{'color': service.getNewErrors() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNewErrors()}}</h1>
+                      <button class="btn btn-primary">Explore</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card" style="text-align: center;height: 100%">
+                    <h5 class="card-header">
+                      Regression Errors
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <h1 class="card-text"
+                          [ngStyle]="{'color': service.getNumErrorsAgainstGold() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNumErrorsAgainstGold()}}</h1>
+                      <button class="btn btn-primary">Explore</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card" style="text-align: center">
+                    <h5 class="card-header">
+                      Performance Trends
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <div class="form-group">
+                        <select class="form-control" [(ngModel)]="model.selectedMetricType">
+                          <option *ngFor="let metric of service.getMetricTypes()"
+                                  value="{{metric}}">{{metric}}</option>
+                        </select>
+                      </div>
+                      <div style="display: block;" *ngIf="model.selectedMetricType !== ''">
+                        <canvas baseChart
+                                [data]="model.renderChartData(service.getMetrics(20), model.selectedMetricType)"
+                                [options]="model.chartOptions"
+                                [chartType]="'scatter'"
+                                [colors]="[{pointBackgroundColor:'#000000'}]"
+                        >
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </form>
-          <div style="display: block;" *ngIf="selectedMetricType !== ''">
-            <canvas baseChart
-                    [data]="renderChartData(service.getMetrics(20), selectedMetricType)"
-                    [options]="chartOptions"
-                    [chartType]="'scatter'"
-                    [colors]="[{pointBackgroundColor:'#000000'}]"
-            >
-            </canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 dashboard-right">
+        <div class="container-fluid" style="text-align: center">
+          <div class="card">
+            <h5 class="card-header">
+              Application Overview
+            </h5>
+            <div class="card-body">
+              <div class="row" style="padding-bottom: 20px">
+                <div class="col">
+                  <div class="card" style="text-align: center;height: 100%">
+                    <h5 class="card-header">
+                      Current Application Build
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <div class="card-text">
+                        <b>Application Version</b><br/>{{service.getApplicationBuildVersion()}}<br/><br/>
+                        <b>Built On</b><br/>{{service.getApplicationBuildDate()}}<br/><br/>
+                        <a href="{{service.getApplicationSCMUrl()}}">
+                          <button class="btn btn-primary">View on {{service.getApplicationSCNName()}}</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card" style="text-align: center;height: 100%">
+                    <h5 class="card-header">
+                      Judgements needing Adjudication
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <h1 class="card-text"
+                          [ngStyle]="{'color': service.getNumErrorsAgainstGold() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNumErrorsAgainstGold()}}</h1>
+                      <button class="btn btn-primary">Explore</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card" style="text-align: center">
+                    <h5 class="card-header">
+                      Evaluation Stats
+                    </h5>
+                    <div class="card-body" style="background-color: #ffffff">
+                      <ul style="list-style: none">
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
