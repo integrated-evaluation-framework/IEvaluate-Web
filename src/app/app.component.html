@@ -23,19 +23,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/apps'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="apps" *ngIf="!hasAppSelected()">Application List</a>
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink="apps" *ngIf="!hasAppSelected()"><mdb-icon fas icon="list"></mdb-icon> Application List</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/dashboard'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="dashboard" *ngIf="hasAppSelected()">Application Monitoring</a>
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink="dashboard" *ngIf="hasAppSelected()"><mdb-icon fas icon="chart-line"></mdb-icon> Application Monitoring</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/evaluate'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="evaluate" *ngIf="hasAppSelected()">Review Identified Errors</a>
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink="evaluate" *ngIf="hasAppSelected()"><mdb-icon fas icon="clipboard-check"></mdb-icon> Review Identified Errors</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/annotate'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="annotate" *ngIf="hasAppSelected()">Generate New Baselines</a>
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink="annotate" *ngIf="hasAppSelected()"><mdb-icon fas icon="file-alt"></mdb-icon> Generate New Baselines</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/baseline'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="baseline" *ngIf="hasAppSelected()">Explore Baseline Corpus</a>
+            <a class="nav-link" routerLinkActive="active" href="#" routerLink="baseline" *ngIf="hasAppSelected()"><mdb-icon fas icon="database"></mdb-icon> Explore Baseline Corpus</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

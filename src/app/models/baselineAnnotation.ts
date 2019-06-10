@@ -6,6 +6,7 @@ export class BaselineAnnotation {
   applicationId: string;
   taskName: string;
   subject: string;
-  assertion: AbstractorAssertion[];
+  finalAssertion: string;
+  abstractorAssertions: AbstractorAssertion[];
   meetsApplicationAbstractorQuorum: boolean;
 }

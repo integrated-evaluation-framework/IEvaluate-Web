@@ -1,3 +1,37 @@
 <div class="row">
-
+  <div class="col">
+    <div class="table-responsive">
+      <table mdbTable mdbTableScroll scrollY="true" bordered="true" striped="true">
+        <thead>
+        <tr>
+          <th scope="col">Task</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Pipeline Assertion</th>
+          <th scope="col">Baseline Assertion</th>
+          <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let error of service.getReportedErrors()">
+          <td>{{error.taskName}}</td>
+          <td>{{error.subject}}</td>
+          <td>{{error.assertion}}</td>
+          <td
+            *ngIf="error.baseline !== null && error.baseline.meetsApplicationAbstractorQuorum">{{error.baseline.finalAssertion}}</td>
+          <td *ngIf="error.baseline !== null && !error.baseline.meetsApplicationAbstractorQuorum">Insufficient Agreement
+            on Baseline Assertion -
+            <button type="button" class="btn btn-indigo btn-sm m-0">Judge this Assertion</button>
+          </td>
+          <td *ngIf="error.baseline === null">No Baseline Assertion Available -
+            <button type="button" class="btn btn-indigo btn-sm m-0">Create new Baseline Annotation</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-indigo btn-sm m-0">View Diagnostic Output</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-indigo btn-sm m-0">Ignore until Next Build</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
