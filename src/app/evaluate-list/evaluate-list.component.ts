@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {GLOBAL_SESSION_INFO, SessionInfo} from '../models/sessioninfo';
+import {EvaluateService} from '../evaluate.service';
 
 @Component({
   selector: 'app-evaluate-list',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EvaluateListComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(GLOBAL_SESSION_INFO) private session: SessionInfo, private service: EvaluateService) {
+  }
 
   ngOnInit() {
   }
-
 }

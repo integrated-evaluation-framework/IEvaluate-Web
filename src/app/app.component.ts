@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {GLOBAL_SESSION_INFO, SessionInfo} from './models/sessioninfo';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -8,7 +9,9 @@ import {GLOBAL_SESSION_INFO, SessionInfo} from './models/sessioninfo';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(@Inject(GLOBAL_SESSION_INFO) private session: SessionInfo) {}
+  constructor(@Inject(GLOBAL_SESSION_INFO) private session: SessionInfo, private location: Location) {
+  }
+
   title = 'Integrated Evaluation Framework - Web Workbench';
 
   hasAppSelected(): boolean {
@@ -16,7 +19,7 @@ export class AppComponent {
   }
 
   getCurrAppName(): string {
-    return this.session.getActiveApp() === null ? 'No Task Selected' : this.session.getActiveApp().name;
+    return this.session.getActiveApp() === null ? 'No Application Selected' : this.session.getActiveApp().name;
   }
 
   getCurrAppId(): string {

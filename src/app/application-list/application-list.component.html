@@ -14,7 +14,7 @@
           <th scope="row">{{task.name}}</th>
           <td>{{task.description}}</td>
           <td>
-            <button (click)="openApp(task)" routerLink="/dashboard">Open Task</button>
+            <button mdbBtn type="button" color="primary" (click)="openApp(task)" routerLink="/dashboard">Open Task</button>
           </td>
         </tr>
         </tbody>

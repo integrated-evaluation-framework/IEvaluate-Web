@@ -14,6 +14,7 @@ import { EvaluateListComponent } from './evaluate-list/evaluate-list.component';
 import { EvaluateDetailModalComponent } from './evaluate-detail-modal/evaluate-detail-modal.component';
 import { AnnotateListComponent } from './annotate-list/annotate-list.component';
 import { BaselineExplorerComponent } from './baseline-explorer/baseline-explorer.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 
 
@@ -31,6 +32,7 @@ import { BaselineExplorerComponent } from './baseline-explorer/baseline-explorer
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
     StorageServiceModule,
     ChartsModule,
     FormsModule
