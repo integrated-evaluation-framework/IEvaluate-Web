@@ -54,13 +54,13 @@
                         </select>
                       </div>
                       <div style="display: block;" *ngIf="model.selectedMetricType !== ''">
-<!--                        <canvas mdbChart-->
-<!--                                [data]="model.renderChartData(service.getMetrics(20), model.selectedMetricType)"-->
-<!--                                [options]="model.chartOptions"-->
-<!--                                [chartType]="'scatter'"-->
-<!--                                [colors]="[{pointBackgroundColor:'#000000'}]"-->
-<!--                        >-->
-<!--                        </canvas>-->
+                        <canvas mdbChart
+                                [data]="model.renderChartData(service.getMetrics(20), model.selectedMetricType)"
+                                [options]="model.chartOptions"
+                                [chartType]="'scatter'"
+                                [colors]="[{pointBackgroundColor:'#000000'}]"
+                        >
+                        </canvas>
                       </div>
                     </div>
                   </div>
