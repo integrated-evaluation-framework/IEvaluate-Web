@@ -1,0 +1,33 @@
+<div class="card">
+  <h5 class="card-header" style="text-align: center">
+    Create new Baseline Annotation for {{this.session.getActiveApp().name}}
+  </h5>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="task"><h5>What pipeline task is this annotation for?</h5></label>
+        <select class="form-control" id="task"
+                required
+                [(ngModel)]="this.currModel.taskName" name="task">
+          <option *ngFor="let task of this.session.getActiveApp().tasks" [value]="task">{{task}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="subject">Subject/Input</label>
+        <input type="text" class="form-control" id="subject"
+               [(ngModel)]="this.currModel.subject" name="subject">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <label for="assertion">Assertion/Output</label>
+        <input type="text" class="form-control" id="assertion"
+               required
+               [(ngModel)]="this.currModel.abstractorAssertions[0].assertion" name="assertion">
+      </div>
+    </div>
+  </div>
+</div>
+

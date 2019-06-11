@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnnotateListComponent } from './annotate-list.component';
+import { AnnotateFormComponent } from './annotate-form.component';
 
-describe('AnnotateListComponent', () => {
-  let component: AnnotateListComponent;
-  let fixture: ComponentFixture<AnnotateListComponent>;
+describe('AnnotateFormComponent', () => {
+  let component: AnnotateFormComponent;
+  let fixture: ComponentFixture<AnnotateFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnnotateListComponent ]
+      declarations: [ AnnotateFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnnotateListComponent);
+    fixture = TestBed.createComponent(AnnotateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

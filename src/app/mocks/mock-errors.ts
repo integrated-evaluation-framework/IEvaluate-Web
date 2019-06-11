@@ -18,7 +18,7 @@ export const MOCK_ERRORS: ReportedError[] = [
   },
   {
     id: '2',
-    taskName: 'MOCK_AI_EXTRACTION_5',
+    taskName: 'MOCK_AI_INFERENCE_1',
     subject: 'MOCK_SUBJECT_1',
     assertion: 'MOCK_REPORTED_ASSERTION_2',
     baseline: null,

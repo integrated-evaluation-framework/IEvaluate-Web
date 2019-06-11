@@ -70,7 +70,7 @@ export const MOCK_BASELINE_ANNS: BaselineAnnotation[] = [
     id: '4',
     baselineId: '1',
     applicationId: '1',
-    taskName: 'MOCK_AI_EXTRACTION_2',
+    taskName: 'MOCK_AI_INFERENCE_2',
     subject: 'MOCK_SUBJECT_1',
     finalAssertion: 'MOCK_ASSERTION_3',
     abstractorAssertions: [
