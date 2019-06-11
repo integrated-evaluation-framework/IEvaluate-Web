@@ -13,35 +13,69 @@
 <div class="row page-navbar">
   <div class="col">
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
-      <mdb-navbar-brand><a class="navbar-brand" routerLink="apps" *ngIf="hasAppSelected()">{{getCurrAppName()}}</a></mdb-navbar-brand>
-      <mdb-navbar-brand><a class="navbar-brand" routerLink="apps" *ngIf="!hasAppSelected()">Integrated Evaluation Framework</a></mdb-navbar-brand>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/apps'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="apps" *ngIf="!hasAppSelected()"><mdb-icon fas icon="list"></mdb-icon> Application List</a>
+          <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
+              <mdb-navbar-brand>{{getCurrAppId() === null ? "Integrated Evaluation Framework" : getCurrAppName()}}<span
+                class="caret"></span></mdb-navbar-brand>
+            </a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#" routerLink="apps">
+                <mdb-icon fas icon="list"></mdb-icon>
+                Application List</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="this.session.setActiveTask(null)">Exit this Application</a>
+            </div>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/dashboard'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="dashboard" *ngIf="hasAppSelected()"><mdb-icon fas icon="chart-line"></mdb-icon> Application Monitoring</a>
+            <a class="nav-link" mdbWavesEffect routerLinkActive="active" href="#" routerLink="dashboard"
+               *ngIf="hasAppSelected()">
+              <mdb-icon fas icon="chart-line"></mdb-icon>
+              Application Monitoring</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/evaluate'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="evaluate" *ngIf="hasAppSelected()"><mdb-icon fas icon="clipboard-check"></mdb-icon> Review Identified Errors</a>
+            <a class="nav-link" mdbWavesEffect routerLinkActive="active" href="#" routerLink="evaluate"
+               *ngIf="hasAppSelected()">
+              <mdb-icon fas icon="clipboard-check"></mdb-icon>
+              Review Identified Errors</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/annotate'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="annotate" *ngIf="hasAppSelected()"><mdb-icon fas icon="file-alt"></mdb-icon> Generate New Baselines</a>
+            <a class="nav-link" mdbWavesEffect routerLinkActive="active" href="#" routerLink="annotate"
+               *ngIf="hasAppSelected()">
+              <mdb-icon fas icon="file-alt"></mdb-icon>
+              Generate New Baselines</a>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/baseline'}">
-            <a class="nav-link" routerLinkActive="active" href="#" routerLink="baseline" *ngIf="hasAppSelected()"><mdb-icon fas icon="database"></mdb-icon> Explore Baseline Corpus</a>
+            <a class="nav-link" mdbWavesEffect routerLinkActive="active" href="#" routerLink="baseline"
+               *ngIf="hasAppSelected()">
+              <mdb-icon fas icon="database"></mdb-icon>
+              Explore Baseline Corpus</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="cog"></mdb-icon>
+              Administration Panel</a>
+          </li>
+          <li class="nav-item dropdown" dropdown *ngIf="session.getActiveUser() !== null">
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
+              <mdb-icon fas icon="user"></mdb-icon>{{session.getActiveUser().name}}<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My Projects</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log Out</a>
+            </div>
+          </li>
+          <li class="nav-item" *ngIf="session.getActiveUser() === null">
+            <a class="nav-link waves-light" mdbWavesEffect>
+              <mdb-icon fas icon="user"></mdb-icon>Login
+            </a>
+          </li>
+        </ul>
       </div>
     </mdb-navbar>
   </div>
