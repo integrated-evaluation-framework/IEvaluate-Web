@@ -4,9 +4,9 @@
     </a>
   </div>
   <div class="col-12" id="header-text">
-    <h3 class="text-center"
+    <h2 class="text-center"
         style="color: #ffffff">
-      IEvaluate - The <i>I</i>ntegrated <i>Evaluat</i>ion Framework for Artificial Intelligence Pipelines</h3>
+      IEvaluate - The <i>I</i>ntegrated <i>Evaluat</i>ion Framework for Artificial Intelligence Pipelines</h2>
   </div>
 </div>
 <!-- Navbar -->
@@ -17,17 +17,19 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown" dropdown>
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
-              <mdb-navbar-brand>{{getCurrAppId() === null ? "Integrated Evaluation Framework" : getCurrAppName()}}<span
-                class="caret"></span></mdb-navbar-brand>
+              <mdb-navbar-brand>{{getCurrAppId() === null ? "Integrated Evaluation Framework" : getCurrAppName()}}
+                <span
+                  class="caret"></span></mdb-navbar-brand>
             </a>
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect href="#" routerLink="apps">
                 <mdb-icon fas icon="list"></mdb-icon>
-                Application List</a>
+                Switch Active Application</a>
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
               <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
               <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="this.session.setActiveTask(null)">Exit this Application</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="this.session.setActiveTask(null)">Exit
+                this Application</a>
             </div>
           </li>
           <li [ngClass]="{'nav-item': true, 'active': this.location.path(false) === '/dashboard'}">
@@ -57,22 +59,30 @@
         </ul>
 
         <ul class="navbar-nav ml-auto nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect>
-              <mdb-icon fas icon="cog"></mdb-icon>
-              Administration Panel</a>
-          </li>
           <li class="nav-item dropdown" dropdown *ngIf="session.getActiveUser() !== null">
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
-              <mdb-icon fas icon="user"></mdb-icon>{{session.getActiveUser().name}}<span class="caret"></span></a>
+              <mdb-icon fas icon="user"></mdb-icon>
+              {{session.getActiveUser().name}}<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">My Projects</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log Out</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">
+                <mdb-icon fas icon="user-edit"></mdb-icon>&nbsp;
+                Preferences</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">
+                <mdb-icon fas icon="calendar-alt"></mdb-icon>&nbsp;
+                Outstanding Tasks</a>
+              <a class="dropdown-item waves-light" mdbWavesEffect>
+                <mdb-icon fas icon="cog"></mdb-icon>&nbsp;
+                Administration Panel</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item waves-light" mdbWavesEffect href="#">
+                <mdb-icon fas icon="sign-out-alt"></mdb-icon>&nbsp;
+                Log Out</a>
             </div>
           </li>
           <li class="nav-item" *ngIf="session.getActiveUser() === null">
             <a class="nav-link waves-light" mdbWavesEffect>
-              <mdb-icon fas icon="user"></mdb-icon>Login
+              <mdb-icon fas icon="user"></mdb-icon>
+              Login
             </a>
           </li>
         </ul>
@@ -80,7 +90,7 @@
     </mdb-navbar>
   </div>
 </div>
-<div class="page-content">
+<div class="page-content shadow mb-5 bg-white rounded">
   <router-outlet></router-outlet>
 </div>
 <div class="row page-footer">
