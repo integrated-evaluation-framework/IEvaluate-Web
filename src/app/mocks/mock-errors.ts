@@ -7,6 +7,7 @@ export const MOCK_ERRORS: ReportedError[] = [
     taskName: 'MOCK_AI_EXTRACTION_1',
     subject: 'MOCK_SUBJECT_1',
     assertion: 'MOCK_ASSERTION_3',
+    errorTime: new Date(),
     baseline: MOCK_BASELINE_ANNS[0],
     diagnostics: [
       'Mock diagnostic string that lead to this assertion 1',
@@ -21,6 +22,7 @@ export const MOCK_ERRORS: ReportedError[] = [
     taskName: 'MOCK_AI_INFERENCE_1',
     subject: 'MOCK_SUBJECT_1',
     assertion: 'MOCK_REPORTED_ASSERTION_2',
+    errorTime: new Date(),
     baseline: null,
     diagnostics: [
       'Mock diagnostic string that lead to this assertion 1',
@@ -35,6 +37,7 @@ export const MOCK_ERRORS: ReportedError[] = [
     taskName: 'MOCK_AI_EXTRACTION_1',
     subject: 'MOCK_SUBJECT_3',
     assertion: 'MOCK_PARTIALLY_JUDGED_ASSERTION_2',
+    errorTime: new Date(),
     baseline: MOCK_BASELINE_ANNS[2],
     diagnostics: [
       'Mock diagnostic string that lead to this assertion 1',
@@ -49,6 +52,7 @@ export const MOCK_ERRORS: ReportedError[] = [
     taskName: 'MOCK_AI_EXTRACTION_2',
     subject: 'MOCK_SUBJECT_1',
     assertion: 'MOCK_ASSERTION_2',
+    errorTime: new Date(),
     baseline: MOCK_BASELINE_ANNS[3],
     diagnostics: [
       'Mock diagnostic string that lead to this assertion 1',

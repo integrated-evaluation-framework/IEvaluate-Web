@@ -6,6 +6,7 @@
         <tr>
           <th scope="col">Task</th>
           <th scope="col">Subject</th>
+          <th scope="col">Output Date/Time</th>
           <th scope="col">Pipeline Assertion</th>
           <th scope="col">Baseline Assertion</th>
           <th scope="col">Options</th>
@@ -15,6 +16,7 @@
         <tr *ngFor="let error of service.getReportedErrors()">
           <td>{{error.taskName}}</td>
           <td>{{error.subject}}</td>
+          <td>{{error.errorTime}}</td>
           <td>{{error.assertion}}</td>
           <td
             *ngIf="error.baseline !== null && error.baseline.meetsApplicationAbstractorQuorum">{{error.baseline.finalAssertion}}</td>
@@ -26,8 +28,10 @@
             <button type="button" class="btn btn-indigo btn-sm m-0">Create new Baseline Annotation</button>
           </td>
           <td>
-            <button type="button" class="btn btn-indigo btn-sm m-0">View Diagnostic Output</button>&nbsp;&nbsp;
-            <button type="button" class="btn btn-indigo btn-sm m-0">Ignore until Next Build</button>
+            <div class="btn-group-sm">
+              <button type="button" class="btn btn-indigo btn-sm m-0">View Diagnostic<br/>Output</button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-indigo btn-sm m-0">Ignore until<br/>Next Build</button>
+            </div>
           </td>
         </tr>
         </tbody>

@@ -15,6 +15,7 @@ import {EvaluateDetailModalComponent} from './evaluate-detail-modal/evaluate-det
 import {AnnotateFormComponent} from './annotate-form/annotate-form.component';
 import {BaselineExplorerComponent} from './baseline-explorer/baseline-explorer.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {ModalModule} from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     MDBBootstrapModule.forRoot(),
     StorageServiceModule,
     ChartsModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot()
   ],
   providers: [{provide: GLOBAL_SESSION_INFO, useExisting: SessionInfo}, SessionInfo],
   bootstrap: [AppComponent]

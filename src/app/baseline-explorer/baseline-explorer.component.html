@@ -1,3 +1,190 @@
-<p>
-  baseline-explorer works!
-</p>
+<div class="row">
+  <div class="col">
+    <div class="table-responsive">
+      <table mdbTable mdbTableScroll scrollY="true" bordered="true" striped="true">
+        <thead>
+        <tr>
+          <th scope="col">Baseline Description</th>
+          <th scope="col">Number of Baseline Annotations</th>
+          <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let corpus of this.service.getBaselineCorpora()">
+          <th scope="row">{{corpus.baselineName}}</th>
+          <td>{{corpus.items.length}}</td>
+          <td>
+            <button mdbBtn type="button" class="btn btn-indigo btn-sm m-0 relative waves-light"
+                    (click)="openBaselineDetailsModal(baselineExplorerModal, corpus)">Open Baseline Corpus
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #baselineExplorerModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Baseline Corpus: {{this.exploredCorpus.baselineName}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeBaselineDetailsModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="table-responsive" *ngIf="exploredCorpus.items.length > 0">
+            <table mdbTable mdbTableScroll scrollY="true" bordered="true" striped="true">
+              <thead>
+              <tr>
+                <th scope="col">Pipeline Task</th>
+                <th scope="col">Input/Subject</th>
+                <th scope="col">Number of Annotations</th>
+                <th scope="col">Quorum Met?</th>
+                <th scope="col">Evaluation Baseline Output/Assertion</th>
+                <th scope="col">Options</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let annotation of exploredCorpus.items">
+                <td>{{annotation.taskName}}</td>
+                <td>{{annotation.subject}}</td>
+                <td>{{annotation.abstractorAssertions.length}}</td>
+                <td>{{annotation.meetsApplicationAbstractorQuorum ? 'Yes' : 'No'}}</td>
+                <td *ngIf="annotation.meetsApplicationAbstractorQuorum">{{annotation.finalAssertion}}</td>
+                <td *ngIf="!annotation.meetsApplicationAbstractorQuorum">
+                  N/A
+                </td>
+                <td>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col">
+                        <div class="btn-group-sm">
+                          <button mdbBtn type="button" class="btn btn-indigo btn-sm m-0 relative waves-light"
+                                  (click)="openAddToBaselineModal(addToBaselineModal, annotation)">Add new
+                            Assertion
+                          </button>
+                          <button mdbBtn type="button" class="btn btn-indigo btn-sm m-0 relative waves-light"
+                                  *ngIf="session.getActiveApp().settings.abstraction.showAbstractorAssertionsBeforeQuorum || annotation.meetsApplicationAbstractorQuorum"
+                                  (click)="openAbstractorAnnotationModal(abstractorAnnotationsModal, annotation)">View
+                            Abstractor Assertions
+                          </button>
+                          <button mdbBtn disabled type="button" class="btn btn-disabled btn-sm m-0 relative waves-light"
+                                  *ngIf="!session.getActiveApp().settings.abstraction.showAbstractorAssertionsBeforeQuorum && !annotation.meetsApplicationAbstractorQuorum">
+                            Disabled prior to Quorum
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="exploredCorpus.items.length === 0">
+            <p>No baseline assertions have been created in this corpus</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="btn-group">
+            <button mdbBtn type="button" class="btn btn-indigo">Import and Append Baseline Assertions</button> <!--TODO-->
+            <button mdbBtn type="button" class="btn btn-indigo">Create new Baseline Assertion</button> <!--TODO-->
+            <button mdbBtn type="button" class="btn btn-danger">Delete this Baseline</button> <!--TODO-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #abstractorAnnotationsModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Abstractor Assertions</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeAbstractorAnnotationDetailsModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col" style="text-align: left">
+          <p><b>Task:&nbsp;</b>{{currAnnotation.taskName}}</p>
+        </div>
+        <div class="col" style="text-align: right">
+          <p><b>Subject/Input:&nbsp;</b>{{currAnnotation.subject}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="table-responsive" *ngIf="currAnnotation.abstractorAssertions.length > 0">
+            <table mdbTable mdbTableScroll scrollY="true" bordered="true" striped="true">
+              <thead>
+              <tr>
+                <th scope="col">Abstractor ID</th>
+                <th scope="col">Abstractor Assertion</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let abstractorAssertion of currAnnotation.abstractorAssertions">
+                <td>{{abstractorAssertion.abstractorId}}</td>
+                <td>{{abstractorAssertion.assertion}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="currAnnotation.abstractorAssertions.length === 0">
+            <p>No assertions have been made yet for this baseline annotation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #addToBaselineModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Abstractor Assertions</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeAddToBaselineModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="task">Pipeline Task</label>
+          <select class="form-control" id="task"
+                  required disabled
+                  [(ngModel)]="this.currAnnotation.taskName" name="task">
+            <option *ngFor="let task of this.session.getActiveApp().tasks" [value]="task">{{task}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="subject">Input/Subject</label>
+          <input type="text" class="form-control" id="subject" disabled
+                 [(ngModel)]="this.currAnnotation.subject" name="subject">
+        </div>
+      </div>
+      <div
+        *ngIf="this.currAnnotation.taskName !== null && this.currAnnotation.taskName !== '' && this.currAnnotation.subject !== ''">
+        <div class="form-row">
+          <div class="form-group col">
+            <label for="assertionNew">Expected Output/Assertion</label>
+            <input type="text" class="form-control" id="assertionNew"
+                   required
+                   [(ngModel)]="this.assertionToAdd" name="assertionNew">
+          </div>
+        </div>
+        <button mdbBtn type="button" color="primary">Add to Baseline</button> <!--TODO-->
+      </div>
+    </div>
+  </div>
+</ng-template>

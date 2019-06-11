@@ -4,7 +4,7 @@ import {BaselineAnnotation} from '../models/baselineAnnotation';
 import {GLOBAL_SESSION_INFO, SessionInfo} from '../models/sessioninfo';
 
 @Component({
-  selector: 'app-annotate-list',
+  selector: 'app-annotate-form',
   templateUrl: './annotate-form.component.html',
   styleUrls: ['./annotate-form.component.css']
 })

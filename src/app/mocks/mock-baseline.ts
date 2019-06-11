@@ -1,4 +1,5 @@
 import {BaselineAnnotation} from '../models/baselineAnnotation';
+import {BaselineCorpus} from '../models/baselineCorpus';
 
 export const MOCK_BASELINE_ANNS: BaselineAnnotation[] = [
   {
@@ -88,5 +89,33 @@ export const MOCK_BASELINE_ANNS: BaselineAnnotation[] = [
       }
     ],
     meetsApplicationAbstractorQuorum: true
+  },
+  {
+    id: '4',
+    baselineId: '1',
+    applicationId: '1',
+    taskName: 'MOCK_AI_INFERENCE_2',
+    subject: 'MOCK_SUBJECT_2',
+    finalAssertion: 'MOCK_ASSERTION_3',
+    abstractorAssertions: [],
+    meetsApplicationAbstractorQuorum: false
+  }
+];
+
+export const MOCK_BASELINE_CORPORA: BaselineCorpus[] = [
+  {
+    baselineId: '1',
+    baselineName: 'MOCK_BASELINE_1',
+    items: MOCK_BASELINE_ANNS
+  },
+  {
+    baselineId: '2',
+    baselineName: 'MOCK_BASELINE_2',
+    items: []
+  },
+  {
+    baselineId: '3',
+    baselineName: 'MOCK_BASELINE_3',
+    items: MOCK_BASELINE_ANNS
   }
 ];

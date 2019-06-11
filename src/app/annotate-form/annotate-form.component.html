@@ -5,7 +5,7 @@
   <div class="card-body">
     <div class="form-row">
       <div class="form-group col">
-        <label for="task"><h5>What pipeline task is this annotation for?</h5></label>
+        <label for="task">What pipeline task is this baseline annotation for?</label>
         <select class="form-control" id="task"
                 required
                 [(ngModel)]="this.currModel.taskName" name="task">
@@ -15,18 +15,21 @@
     </div>
     <div class="form-row">
       <div class="form-group col">
-        <label for="subject">Subject/Input</label>
+        <label for="subject">What is the input that produces this baseline?</label>
         <input type="text" class="form-control" id="subject"
                [(ngModel)]="this.currModel.subject" name="subject">
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col">
-        <label for="assertion">Assertion/Output</label>
-        <input type="text" class="form-control" id="assertion"
-               required
-               [(ngModel)]="this.currModel.abstractorAssertions[0].assertion" name="assertion">
+    <div *ngIf="this.currModel.taskName !== null && this.currModel.taskName !== '' && this.currModel.subject !== ''">
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="assertionNew">What is the output that this task should produce?</label>
+          <input type="text" class="form-control" id="assertionNew"
+                 required
+                 [(ngModel)]="this.currModel.abstractorAssertions[0].assertion" name="assertionNew">
+        </div>
       </div>
+      <button mdbBtn type="button" color="primary">Create new Baseline</button>
     </div>
   </div>
 </div>
