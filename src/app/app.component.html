@@ -12,7 +12,7 @@
 <!-- Navbar -->
 <div class="row page-navbar">
   <div class="col">
-    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color z-depth-0" [containerInside]="false">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown" dropdown>
@@ -24,9 +24,7 @@
             <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
               <a class="dropdown-item waves-light" mdbWavesEffect href="#" routerLink="apps">
                 <mdb-icon fas icon="list"></mdb-icon>
-                Switch Active Application</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
-              <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+                {{getCurrAppId() === null ? 'Open Application List' : 'Switch Active Application'}}</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item waves-light" mdbWavesEffect href="#" (click)="this.session.setActiveTask(null)">Exit
                 this Application</a>

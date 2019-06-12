@@ -5,6 +5,5 @@ export class EvaluatedApplication {
   name: string;
   description: string;
   tasks: string[];
-  permissions: Permissions;
   settings: ApplicationSettings;
 }

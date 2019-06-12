@@ -19,7 +19,7 @@
                       <div class="card-body" style="background-color: #ffffff">
                         <h1 class="card-text"
                             [ngStyle]="{'color': service.getNewErrors() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNewErrors()}}</h1>
-                        <button class="btn btn-primary">Explore</button>
+                        <button class="btn btn-indigo btn-sm">Explore</button>
                       </div>
                     </div>
                   </div>
@@ -31,7 +31,7 @@
                       <div class="card-body" style="background-color: #ffffff">
                         <h1 class="card-text"
                             [ngStyle]="{'color': service.getNumErrorsAgainstGold() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNumErrorsAgainstGold()}}</h1>
-                        <button class="btn btn-primary">Explore</button>
+                        <button class="btn btn-indigo btn-sm">Explore</button>
                       </div>
                     </div>
                   </div>
@@ -84,7 +84,7 @@
                           <b>Application Version</b><br/>{{service.getApplicationBuildVersion()}}<br/><br/>
                           <b>Built On</b><br/>{{service.getApplicationBuildDate()}}<br/><br/>
                           <a href="{{service.getApplicationSCMUrl()}}">
-                            <button class="btn btn-primary">View on {{service.getApplicationSCNName()}}</button>
+                            <button class="btn btn-indigo btn-sm">View on {{service.getApplicationSCNName()}}</button>
                           </a>
                         </div>
                       </div>
@@ -98,7 +98,7 @@
                       <div class="card-body" style="background-color: #ffffff">
                         <h1 class="card-text"
                             [ngStyle]="{'color': service.getNumErrorsAgainstGold() > 0 ? '#FF0000' : '#00FF00'}">{{service.getNumErrorsAgainstGold()}}</h1>
-                        <button class="btn btn-primary">Explore</button>
+                        <button class="btn btn-indigo btn-sm">Explore</button>
                       </div>
                     </div>
                   </div>
